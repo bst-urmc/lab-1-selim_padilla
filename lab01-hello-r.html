@@ -186,22 +186,15 @@ library(datasauRus)</code></pre>
 </div>
 <div id="data" class="section level1">
 <h1>Data</h1>
-<pre class="marginfigure"><code>If it&#39;s confusing that the data frame is called `datasaurus_dozen` when it contains 13 datasets, you&#39;re not alone! Have you heard of a [baker&#39;s dozen](https://en.wikipedia.org/wiki/Dozen#Baker&#39;s_dozen)?</code></pre>
-<p>The data frame we will be working with today is called
-<code>datasaurus_dozen</code> and it’s in the <code>datasauRus</code>
-package. Actually, this single data frame contains 13 datasets, designed
-to show us why data visualisation is important and how summary
-statistics alone can be misleading. The different datasets are maked by
-the <code>dataset</code> variable.</p>
 <p>To find out more about the dataset, type the following in your
 Console:</p>
-<pre class="?datasaurus_dozen```"><code>A question mark before the name of an object will always bring up its help file. This command must be run in the Console.
+<pre class="?datasaurus_dozen```"><code>
 
 1. Based on the help file, how many rows and how many columns does the `datasaurus_dozen` file have? What are the variables included in the data frame? Add your responses to your lab report. When you&#39;re done, commit your changes with the commit message &quot;Added answer for Ex 1&quot;, and push
 
 
 
-DataSaurus Dozen has 1846 rows and 3 variables. Given the format of Datasaurus Dozen, there are 3 variables: x values,y-values , and dataset which indicates the data are from.
+ I typed the command in console.DataSaurus Dozen has 1846 rows and 3 variables. Given the format of Datasaurus Dozen, there are 3 variables: x values,y-values , and dataset which indicates the data are from.
 
 
 
@@ -261,7 +254,7 @@ your Rmd document and successfully knit it and view the results.</p>
 <code>filter</code> function to filter for observations where
 <code>dataset == "dino"</code>. Store the resulting filtered data frame
 as a new data frame called <code>dino_data</code>.</p>
-<pre class="r"><code>dino_data = datasaurus_dozen %&gt;%
+<pre class="r"><code>dino_data &lt;- datasaurus_dozen %&gt;%
   filter(dataset == &quot;dino&quot;)</code></pre>
 <p>There is a lot going on here, so let’s slow down and unpack it a
 bit.</p>
@@ -285,7 +278,7 @@ we want to use to represent each observation in the data. In this case
 we want these to be points,m hence <code>geom_point</code>.</p>
 <pre class="r"><code>ggplot(data = dino_data, mapping = aes(x = x, y = y)) +
   geom_point()</code></pre>
-<p><img src="lab01-hello-r_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="lab01-hello-r_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>If this seems like a lot, it is. And you will learn about the
 philosophy of building data visualizations in layer in detail next week.
 For now, follow along with the code that is provided.</p>

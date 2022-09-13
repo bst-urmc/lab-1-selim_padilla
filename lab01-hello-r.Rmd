@@ -44,21 +44,17 @@ library(datasauRus)
 
 # Data
 
-```{marginfigure}
-If it's confusing that the data frame is called `datasaurus_dozen` when it contains 13 datasets, you're not alone! Have you heard of a [baker's dozen](https://en.wikipedia.org/wiki/Dozen#Baker's_dozen)?
-```
 
-The data frame we will be working with today is called `datasaurus_dozen` and it's in the `datasauRus` package. Actually, this single data frame contains 13 datasets, designed to show us  why data visualisation is important and how summary statistics alone can be misleading. The different datasets are maked by the `dataset` variable.
 
 To find out more about the dataset, type the following in your Console: 
 ```?datasaurus_dozen``` 
-A question mark before the name of an object will always bring up its help file. This command must be run in the Console.
+
 
 1. Based on the help file, how many rows and how many columns does the `datasaurus_dozen` file have? What are the variables included in the data frame? Add your responses to your lab report. When you're done, commit your changes with the commit message "Added answer for Ex 1", and push
 
 
 
-DataSaurus Dozen has 1846 rows and 3 variables. Given the format of Datasaurus Dozen, there are 3 variables: x values,y-values , and dataset which indicates the data are from.
+ I typed the command in console.DataSaurus Dozen has 1846 rows and 3 variables. Given the format of Datasaurus Dozen, there are 3 variables: x values,y-values , and dataset which indicates the data are from.
 
 
 
