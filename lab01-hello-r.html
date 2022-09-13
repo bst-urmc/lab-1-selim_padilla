@@ -11,6 +11,7 @@
 
 <meta name="author" content="Nada Selim and Katie Padilla" />
 
+<meta name="date" content="2022-09-13" />
 
 <title>Lab 01 - Hello R!</title>
 
@@ -170,146 +171,18 @@ pre code {
 
 <h1 class="title toc-ignore">Lab 01 - Hello R!</h1>
 <h4 class="author">Nada Selim and Katie Padilla</h4>
-<h4 class="date">2022-09-13 (updated 2022-09-13 by TL)</h4>
+<h4 class="date">2022-09-13</h4>
 
 </div>
 
 
-<div id="introduction" class="section level1">
-<h1>Introduction</h1>
-<pre class="marginfigure"><code>R is the name of the programming language itself and RStudio is a convenient interface.</code></pre>
-<p>The main goal of this lab is to introduce you to R and RStudio, which
-we will be using throughout the course both to learn the statistical
-concepts discussed in the course and to analyze real data and come to
-informed conclusions.</p>
-<pre class="marginfigure"><code>git is a version control system (like &quot;Track Changes&quot; features from Microsoft Word on steroids) and GitHub is the home for your Git-based projects on the internet (like DropBox but much, much better).</code></pre>
-<p>An additional goal is to introduce you to git and GitHub, which is
-the collaboration and version control system that we will be using
-throughout the course.</p>
-<p>As the labs progress, you are encouraged to explore beyond what the
-labs dictate; a willingness to experiment will make you a much better
-programmer. Before we get to that stage, however, you need to build some
-basic fluency in R. Today we begin with the fundamental building blocks
-of R and RStudio: the interface, reading in data, and basic
-commands.</p>
-</div>
-<div id="getting-started" class="section level1">
-<h1>Getting started</h1>
-<p>Each of your assignments will begin with the following steps. You can
-always refer back to this lab (or other labs) for a detailed list of the
-steps involved for getting started with an assignment.</p>
-<p>This part you will do every time you have an assignment or lab.</p>
-<p>#<code>{r paste-gh-repo-url, fig.margin = TRUE, echo = FALSE, fig.width=5} #knitr::include_graphics("lab00-demonstration/img/copy-assignment-repo-link.png") #</code></p>
-<ul>
-<li><p>Click on the assignment link that you should have received in
-your email to create your GitHub repository (which we’ll refer to as
-“repo” going forward) for the assignment. This repo contains a template
-you can build on to complete your assignment.</p></li>
-<li><p>Note that it’s not in <em>your</em> GitHub folder, it’s in the
-coursespace (so I can see it but you can’t see each other’s) and it is a
-copy of the template that I made to be here.</p></li>
-<li><p>On GitHub, click on the green <strong>Clone or download</strong>
-button, select <strong>Use HTTPS</strong> (this might already be
-selected by default, and if it is, you’ll see the text <strong>Clone
-with HTTPS</strong> as in the image below). Click on the clipboard icon
-to copy the repo URL. It will start with the class “bst-urmc” and end
-with your username “tanzylove” (for me) and the middle is based on what
-the assignment is named.</p></li>
-<li><p>Go to RStudio clone the assignment repository. This is the one
-copy and paste into RStudio part that you will do each time you start to
-work.</p></li>
-</ul>
-<pre><code>###  #&#39;s comment out lines in R code
-
-#you need to change this to the right repository and location for you and your local machine
-usethis::create_from_github(&quot;https://github.com/bst-urmc/lab-1-tanzylove&quot;,
-   destdir=&quot;~/Documents/work/teaching/BST430/&quot;)
-</code></pre>
-<ul>
-<li>Copy and paste the URL of your assignment repo into the
-function</li>
-<li>If you need to login to github, a login box should pop up.</li>
-<li>It opens up a new copy of RStudio with all the files from the
-repository in question.</li>
-</ul>
-</div>
 <div id="packages" class="section level1">
 <h1>Packages</h1>
-<p>In this lab we will work with two packages: <code>datasauRus</code>
-which contains the dataset, and <code>tidyverse</code> which is a
-collection of packages for doing data analysis in a “tidy” way.</p>
-<p>Install these packages by running the following in the console.</p>
+<p>datasaurus_dozen/</p>
 <pre class="r"><code>install.packages(&quot;tidyverse&quot;)
 install.packages(&quot;datasauRus&quot;)</code></pre>
-<p>Now that the necessary packages are installed, you should be able to
-Knit your document and see the results. This last package is only
-necessary as a helper to configure git to know about your github
-account.</p>
-<p>If you’d like to run your code in the Console as well you’ll also
-need to load the packages there. To do so, run the following in the
-console.</p>
 <pre class="r"><code>library(tidyverse) 
 library(datasauRus)</code></pre>
-<p>Note that the packages are also loaded with the same commands in your
-R Markdown document.</p>
-</div>
-<div id="warm-up" class="section level1">
-<h1>Warm up</h1>
-<p>Before we introduce the data, let’s warm up with some simple
-exercises. The following video is an overview of some of these warmup
-exercises.</p>
-<iframe width="600" height="320" src="https://www.youtube.com/embed/XE8h8jIyu04" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-</iframe>
-<pre class="marginfigure"><code>The top portion of your R Markdown file (between the three dashed lines) is called YAML. It stands for &quot;YAML Ain&#39;t Markup Language&quot;. It is a (allegedly) human friendly way to represent data, and is used in multiple programming languages. All you need to know is that this area is called the YAML (we will refer to it as such) and that it contains meta information about your document.</code></pre>
-<div id="yaml" class="section level2">
-<h2>YAML:</h2>
-<p><strong>CHECK</strong> that the output lists html first. That will
-help later in the lab.</p>
-<pre><code>output: 
-  html_document: 
-    self_contained: no
-  tufte::tufte_html:</code></pre>
-<p>Open the R Markdown (Rmd) file in your project, change the author
-name to your name, and knit the document.</p>
-</div>
-<div id="commiting-changes" class="section level2">
-<h2>Commiting changes:</h2>
-<p>Then Go to the Git pane in your RStudio.</p>
-<p>If you have made changes to your Rmd file, you should see it listed
-here. Click on it to select it in this list and then click on
-<strong>Diff</strong>. This shows you the <em>diff</em>erence between
-the last committed state of the document and its current state that
-includes your changes. If you’re happy with these changes, write “Update
-author name” in the <strong>Commit message</strong> box and hit
-<strong>Commit</strong>.</p>
-<p>You don’t have to commit after every change, this would get quite
-cumbersome. You should consider committing states that are
-<em>meaningful to you</em> for inspection, comparison, or restoration.
-In the first few assignments we will tell you exactly when to commit and
-in some cases, what commit message to use. As the semester progresses we
-will let you make these decisions.</p>
-</div>
-<div id="pulling-and-pushing-changes" class="section level2">
-<h2><strong>Pulling</strong> and Pushing changes:</h2>
-<p>Now that you have made an update and committed this change, it’s time
-to push these changes to the web! Or more specifically, to your repo on
-GitHub. Why? So that others can see your changes. And by others, we mean
-the course teaching team for individual assignments (your repos in this
-course are private to you and us, only).</p>
-<p>Today we are trying a group assignment, so we need to
-<strong>Pull</strong> each time before we <strong>Push</strong>. Why? If
-your team member made a change and you <em>Push</em>, you could
-<strong>erase</strong> it.</p>
-<p>In order to pull and push your changes to GitHub, click on
-<strong>Pull</strong>(down) and <strong>Push</strong>(up). This will
-popup a box to tell you the status. If there are no difference in the
-online repository, when you pull you’ll get “Already up to date.” If you
-have a committed change (or two) your push will show “HEAD -&gt;
-main”.</p>
-<p>If you’re working in a team today, let different people update and
-make changes. Try to <strong>Pull</strong> before you make edits so
-you’re working on the most current file.</p>
-</div>
 </div>
 <div id="data" class="section level1">
 <h1>Data</h1>
@@ -324,7 +197,15 @@ the <code>dataset</code> variable.</p>
 Console:</p>
 <pre class="?datasaurus_dozen```"><code>A question mark before the name of an object will always bring up its help file. This command must be run in the Console.
 
-1. Based on the help file, how many rows and how many columns does the `datasaurus_dozen` file have? What are the variables included in the data frame? Add your responses to your lab report. When you&#39;re done, commit your changes with the commit message &quot;Added answer for Ex 1&quot;, and push.
+1. Based on the help file, how many rows and how many columns does the `datasaurus_dozen` file have? What are the variables included in the data frame? Add your responses to your lab report. When you&#39;re done, commit your changes with the commit message &quot;Added answer for Ex 1&quot;, and push
+
+
+
+DataSaurus Dozen has 1846 rows and 3 variables. Given the format of Datasaurus Dozen, there are 3 variables: x values,y-values , and dataset which indicates the data are from.
+
+
+
+
 
 Let&#39;s take a look at what these datasets are. To do so we can make a *frequency table* of the dataset variable:
 
@@ -404,7 +285,7 @@ we want to use to represent each observation in the data. In this case
 we want these to be points,m hence <code>geom_point</code>.</p>
 <pre class="r"><code>ggplot(data = dino_data, mapping = aes(x = x, y = y)) +
   geom_point()</code></pre>
-<p><img src="lab01-hello-r_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="lab01-hello-r_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>If this seems like a lot, it is. And you will learn about the
 philosophy of building data visualizations in layer in detail next week.
 For now, follow along with the code that is provided.</p>
