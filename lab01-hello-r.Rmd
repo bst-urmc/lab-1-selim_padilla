@@ -83,7 +83,7 @@ Below is the code you will need to complete this exercise. Basically, the answer
 Start with the `datasaurus_dozen` and pipe it into the `filter` function to filter for observations where `dataset == "dino"`. Store the resulting filtered data frame as a new data frame called `dino_data`.
 
 ```{r}
-dino_data = datasaurus_dozen %>%
+dino_data <- datasaurus_dozen %>%
   filter(dataset == "dino")
 ```
 
@@ -118,7 +118,18 @@ dino_data %>%
 *This is a good place to pause, commit changes with the commit message "Added answer for Ex 2", and push.*
 
 3. Plot `y` vs. `x` for the `star` dataset. You can (and should) reuse code we introduced above, just replace the dataset name with the desired dataset. Then, calculate the correlation coefficient between `x` and `y` for this dataset. How does this value compare to the `r` of `dino`?
-
+```{r}
+bullseye_data <- datasaurus_dozen %>%
+  filter(dataset == "bullseye")
+```
+```{r fig.fullwidth=TRUE}
+ggplot(data = bullseye_data, mapping = aes(x = x, y = y)) +
+  geom_point()
+```
+```{r}
+bullseye_data %>%
+  summarize(r = cor(x, y))
+```
 *This is another good place to pause, commit changes with the commit message "Added answer for Ex 3", and push.*
 
 4. Plot `y` vs. `x` for the `circle` dataset. You can (and should) reuse code we introduced above, just replace the dataset name with the desired dataset. Then, calculate the correlation coefficient between `x` and `y` for this dataset. How does this value compare to the `r` of `dino`?

@@ -312,6 +312,17 @@ correlation coefficient between <code>x</code> and <code>y</code> for
 this dataset. How does this value compare to the <code>r</code> of
 <code>dino</code>?</li>
 </ol>
+<pre class="r"><code>bullseye_data &lt;- datasaurus_dozen %&gt;%
+  filter(dataset == &quot;bullseye&quot;)</code></pre>
+<pre class="r"><code>ggplot(data = bullseye_data, mapping = aes(x = x, y = y)) +
+  geom_point()</code></pre>
+<p><img src="lab01-hello-r_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<pre class="r"><code>bullseye_data %&gt;%
+  summarize(r = cor(x, y))</code></pre>
+<pre><code>## # A tibble: 1 × 1
+##         r
+##     &lt;dbl&gt;
+## 1 -0.0686</code></pre>
 <p><em>This is another good place to pause, commit changes with the
 commit message “Added answer for Ex 3”, and push.</em></p>
 <ol start="4" style="list-style-type: decimal">
