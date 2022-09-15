@@ -179,34 +179,15 @@ pre code {
 <div id="packages" class="section level1">
 <h1>Packages</h1>
 <p>datasaurus_dozen/</p>
-<pre class="r"><code>install.packages(&quot;tidyverse&quot;)
-install.packages(&quot;datasauRus&quot;)</code></pre>
+<pre class="r"><code>install.packages(&quot;tidyverse&quot;)</code></pre>
+<pre><code>## Warning: package &#39;tidyverse&#39; is in use and will not be installed</code></pre>
+<pre class="r"><code>install.packages(&quot;datasauRus&quot;)</code></pre>
+<pre><code>## Warning: package &#39;datasauRus&#39; is in use and will not be installed</code></pre>
 <pre class="r"><code>library(tidyverse) 
-library(datasauRus)</code></pre>
-</div>
-<div id="data" class="section level1">
-<h1>Data</h1>
-<p>To find out more about the dataset, type the following in your
-Console:</p>
-<pre class="?datasaurus_dozen```"><code>
-
-1. Based on the help file, how many rows and how many columns does the `datasaurus_dozen` file have? What are the variables included in the data frame? Add your responses to your lab report. When you&#39;re done, commit your changes with the commit message &quot;Added answer for Ex 1&quot;, and push
-
-
-
- I typed the command in console.DataSaurus Dozen has 1846 rows and 3 variables. Given the format of Datasaurus Dozen, there are 3 variables: x values,y-values , and dataset which indicates the data are from.
-
-
-
-
-
-Let&#39;s take a look at what these datasets are. To do so we can make a *frequency table* of the dataset variable:
-
-
-```r
+library(datasauRus)
 datasaurus_dozen %&gt;%
-  count(dataset) %&gt;%
-  print(13)</code></pre>
+count(dataset) %&gt;%
+print(13)</code></pre>
 <pre><code>## # A tibble:
 ## #   13 × 2
 ##    dataset   
@@ -228,7 +209,30 @@ datasaurus_dozen %&gt;%
 ## #   more
 ## #   variable:
 ## #   n &lt;int&gt;</code></pre>
-<pre class="marginfigure"><code>Matejka, Justin, and George Fitzmaurice. &quot;Same stats, different graphs: Generating datasets with varied appearance and identical statistics through simulated annealing.&quot; Proceedings of the 2017 CHI Conference on Human Factors in Computing Systems. ACM, 2017.</code></pre>
+</div>
+<div id="data" class="section level1">
+<h1>Data</h1>
+<p>To find out more about the dataset, type the following in your
+Console:</p>
+<pre class="?datasaurus_dozen```"><code>
+
+1. Based on the help file, how many rows and how many columns does the `datasaurus_dozen` file have? What are the variables included in the data frame? Add your responses to your lab report. When you&#39;re done, commit your changes with the commit message &quot;Added answer for Ex 1&quot;, and push
+
+
+
+ I typed the command in console.DataSaurus Dozen has 1846 rows and 3 variables. Given the format of Datasaurus Dozen, there are 3 variables: x values,y-values , and dataset which indicates the data are from.
+
+
+
+
+
+Let&#39;s take a look at what these datasets are. To do so we can make a *frequency table* of the dataset variable:
+
+
+
+
+```marginfigure
+Matejka, Justin, and George Fitzmaurice. &quot;Same stats, different graphs: Generating datasets with varied appearance and identical statistics through simulated annealing.&quot; Proceedings of the 2017 CHI Conference on Human Factors in Computing Systems. ACM, 2017.</code></pre>
 <p>The original Datasaurus (<code>dino</code>) was created by Alberto
 Cairo in <a
 href="http://www.thefunctionalart.com/2016/08/download-datasaurus-never-trust-summary.html">this
@@ -251,7 +255,7 @@ dataset. Then, calculate the correlation coefficient between
   filter(dataset == &quot;dino&quot;)</code></pre>
 <pre class="r"><code>ggplot(data = dino_data, mapping = aes(x = x, y = y)) +
   geom_point()</code></pre>
-<p><img src="lab01-hello-r_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><img src="lab01-hello-r_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <pre class="r"><code>dino_data %&gt;%
   summarize(r = cor(x, y))</code></pre>
 <pre><code>## # A tibble: 1 × 1
@@ -270,7 +274,7 @@ this dataset. How does this value compare to the <code>r</code> of
   filter(dataset == &quot;bullseye&quot;)</code></pre>
 <pre class="r"><code>ggplot(data = bullseye_data, mapping = aes(x = x, y = y)) +
   geom_point()</code></pre>
-<p><img src="lab01-hello-r_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="lab01-hello-r_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <pre class="r"><code>bullseye_data %&gt;%
   summarize(r = cor(x, y))</code></pre>
 <pre><code>## # A tibble: 1 × 1
@@ -298,16 +302,38 @@ this dataset. How does this value compare to the <code>r</code> of
 <li>Finally, let’s plot all datasets at once. In order to do this we
 will make use of facetting.</li>
 </ol>
-<pre class="r"><code>ggplot(datasaurus_dozen, aes(x = x, y = y, color = dataset))+
+<pre class="r"><code>ggplot(datasaurus_dozen, aes(x = x, y = y))+
   geom_point()+
-  facet_wrap(~ dataset, ncol = 3) +
+  facet_wrap(~dataset, ncol = 3) +
   theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="lab01-hello-r_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>And we can use the <code>group_by</code> function to generate all the
 summary correlation coefficients.</p>
 <pre class="r"><code>datasaurus_dozen %&gt;%
   group_by(dataset) %&gt;%
   summarize(r = cor(x, y)) %&gt;%
   print(13)</code></pre>
+<pre><code>## # A tibble:
+## #   13 × 2
+##    dataset   
+##    &lt;chr&gt;     
+##  1 away      
+##  2 bullseye  
+##  3 circle    
+##  4 dino      
+##  5 dots      
+##  6 h_lines   
+##  7 high_lines
+##  8 slant_down
+##  9 slant_up  
+## 10 star      
+## 11 v_lines   
+## 12 wide_lines
+## 13 x_shape   
+## # … with 1
+## #   more
+## #   variable:
+## #   r &lt;dbl&gt;</code></pre>
 <p>You’re done with the data analysis exercises, but we’d like you to do
 two more things:</p>
 <pre class="r"><code>#knitr::include_graphics(&quot;lab01-hello-r/img/fig-resize-global.png&quot;)</code></pre>

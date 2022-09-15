@@ -28,16 +28,19 @@ options(
 # Packages
 datasaurus_dozen/
 
-```{r eval = FALSE}
+```{r}
 install.packages("tidyverse")
 install.packages("datasauRus")
 ```
 
 
 
-```{r eval = FALSE}
+```{r}
 library(tidyverse) 
 library(datasauRus)
+datasaurus_dozen %>%
+count(dataset) %>%
+print(13)
 ```
 
 
@@ -62,11 +65,7 @@ To find out more about the dataset, type the following in your Console:
 
 Let's take a look at what these datasets are. To do so we can make a *frequency table* of the dataset variable:
 
-```{r}
-datasaurus_dozen %>%
-  count(dataset) %>%
-  print(13)
-```
+
 
 ```{marginfigure}
 Matejka, Justin, and George Fitzmaurice. "Same stats, different graphs: Generating datasets with varied appearance and identical statistics through simulated annealing." Proceedings of the 2017 CHI Conference on Human Factors in Computing Systems. ACM, 2017.
@@ -133,16 +132,16 @@ Facet by the dataset variable, placing the plots in a 3 column grid, and don't a
 
 5. Finally, let's plot all datasets at once. In order to do this we will make use of facetting.
 
-```{r all-viz, eval=FALSE, fig.fullwidth=TRUE}
-ggplot(datasaurus_dozen, aes(x = x, y = y, color = dataset))+
+```{r}
+ggplot(datasaurus_dozen, aes(x = x, y = y))+
   geom_point()+
-  facet_wrap(~ dataset, ncol = 3) +
+  facet_wrap(~dataset, ncol = 3) +
   theme(legend.position = "none")
 ```
 
 And we can use the `group_by` function to generate all the summary correlation coefficients.
 
-```{r all-r, eval=FALSE}
+```{r}
 datasaurus_dozen %>%
   group_by(dataset) %>%
   summarize(r = cor(x, y)) %>%
